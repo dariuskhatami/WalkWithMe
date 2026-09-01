@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Walk With Me connects volunteer dog walkers with dog owners who are disabled, injured, recovering, or living with limited mobility in Santa Barbara." />
+  <title>Walk With Me | Santa Barbara Volunteer Dog Walking</title>
+
+  <style>
+    :root{
+      --cream:#fff8ee;
+      --paper:#fffdf8;
+      --ink:#3f3932;
+      --muted:#73695f;
+      --terracotta:#c96f52;
+      --terracotta-dark:#a9553d;
+      --teal:#3f7f7a;
+      --teal-dark:#2f6662;
+      --gold:#e6b65c;
+      --sand:#f0dfc4;
+      --line:#e3cfb5;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      line-height:1.6;
+    }
+
+    a{color:inherit}
+    .container{width:min(1080px, calc(100% - 32px)); margin:0 auto}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(255,253,248,.95);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+
+    nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      text-decoration:none;
+      font-size:1.45rem;
+      letter-spacing:-.025em;
+      color:var(--terracotta-dark);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.9rem;
+      color:#655f56;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.88rem;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.15s ease;
+    }
+
+    .btn-primary{
+      background:var(--terracotta);
+      color:white;
+      box-shadow:0 8px 20px rgba(201,111,82,.16);
+    }
+
+    .btn-primary:hover{background:var(--terracotta-dark)}
+
+    .btn-secondary{
+      background:transparent;
+      border-color:var(--teal);
+      color:var(--teal-dark);
+    }
+
+    .btn-secondary:hover{
+      background:#edf7f6;
+    }
+
+    .hero{
+      padding:100px 0 96px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(230,182,92,.24), transparent 24%),
+        radial-gradient(circle at 12% 88%, rgba(63,127,122,.10), transparent 28%),
+        linear-gradient(180deg,#fff9ef 0%,#fff6e9 100%);
+    }
+
+    .hero-inner{
+      max-width:780px;
+    }
+
+    .eyebrow{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--teal-dark);
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3{
+      font-weight:400;
+      margin-top:0;
+      color:var(--ink);
+      letter-spacing:-.035em;
+    }
+
+    h1{
+      font-size:clamp(3.6rem, 7vw, 6.5rem);
+      line-height:.95;
+      margin-bottom:24px;
+      color:#4a3a32;
+    }
+
+    h2{
+      font-size:clamp(2.35rem, 4vw, 3.45rem);
+      line-height:1.06;
+      margin-bottom:16px;
+    }
+
+    h3{
+      font-size:1.35rem;
+      margin-bottom:8px;
+    }
+
+    p{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      color:var(--muted);
+    }
+
+    .hero p{
+      max-width:660px;
+      font-size:1.05rem;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .mission-strip{
+      padding:50px 0;
+      text-align:center;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:#fff4e6;
+    }
+
+    .mission-strip p{
+      font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      color:var(--terracotta-dark);
+      font-size:clamp(1.5rem, 2.5vw, 2.1rem);
+      max-width:800px;
+      margin:0 auto;
+    }
+
+    section{padding:82px 0}
+
+    .section-intro{
+      max-width:720px;
+      margin-bottom:36px;
+    }
+
+    .section-intro p{
+      margin-bottom:0;
+      font-size:.98rem;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card{
+      border-top:3px solid var(--gold);
+      padding-top:20px;
+    }
+
+    .card:nth-child(2){border-top-color:var(--teal)}
+    .card:nth-child(3){border-top-color:var(--terracotta)}
+
+    .card-number{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      color:var(--teal-dark);
+      font-size:.75rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+
+    .card p{
+      margin:0;
+      font-size:.91rem;
+    }
+
+    .how{
+      background:#f4efe7;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .step{
+      background:var(--white);
+      border:1px solid var(--line);
+      padding:24px;
+      border-radius:18px;
+    }
+
+    .step-num{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--gold);
+      color:#4d4137;
+      margin-bottom:18px;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-weight:700;
+    }
+
+    .step:nth-child(2) .step-num{
+      background:var(--teal);
+      color:white;
+    }
+
+    .step:nth-child(3) .step-num{
+      background:var(--terracotta);
+      color:white;
+    }
+
+    .step p{
+      margin-bottom:0;
+      font-size:.91rem;
+    }
+
+    .verse{
+      background:linear-gradient(180deg,#e5f1f0 0%,#f3e9dc 100%);
+      text-align:center;
+    }
+
+    .verse-wrap{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    blockquote{
+      margin:0;
+      font-size:clamp(1.9rem, 3.5vw, 3.1rem);
+      line-height:1.3;
+      color:#3f4845;
+    }
+
+    .verse-ref{
+      margin-top:18px;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--terracotta-dark);
+      font-weight:700;
+    }
+
+    .cta{
+      text-align:center;
+      background:#fff8ef;
+    }
+
+    .cta h2{
+      max-width:720px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta p{
+      max-width:620px;
+      margin:0 auto 24px;
+    }
+
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      padding:34px 0;
+      background:#355f5c;
+      color:#f6eee3;
+    }
+
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    footer p{
+      margin:0;
+      color:#e8ddd0;
+      font-size:.77rem;
+    }
+
+    @media (max-width: 850px){
+      .cards,.steps{grid-template-columns:1fr}
+      .nav-links a:not(.btn){display:none}
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(100% - 24px,1080px)}
+      nav{min-height:64px}
+      .nav-links .btn{padding:10px 14px;font-size:.8rem}
+      .hero{padding:70px 0}
+      section{padding:60px 0}
+    }
+  
+    @media (max-width: 760px){
+      #contact > .container > div[style*="grid-template-columns"]{
+        grid-template-columns:1fr !important;
+      }
+    }
+
+  
+    .intake-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:36px;text-align:left}
+    .intake-card{background:#fffdf8;border:1px solid var(--line);border-radius:22px;padding:28px}
+    .form-kicker{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--teal-dark);font-weight:700;margin-bottom:6px}
+    .form-intro{margin-top:-2px;margin-bottom:20px;font-size:.9rem}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .intake-card label{display:block;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.8rem;font-weight:700;color:#554c44;margin:14px 0 6px}
+    .intake-card input,.intake-card select,.intake-card textarea{width:100%;padding:12px 13px;border:1px solid #d8c7b3;border-radius:10px;background:white;color:var(--ink);font:inherit;outline:none}
+    .intake-card textarea{min-height:105px;resize:vertical}
+    .intake-card input:focus,.intake-card select:focus,.intake-card textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(63,127,122,.09)}
+    .optional{color:#92877b;font-weight:400}
+    .acknowledgement{border-top:1px solid var(--line);margin-top:22px;padding-top:6px}
+    .check-row{display:flex!important;align-items:flex-start;gap:10px;font-weight:400!important;line-height:1.45}
+    .check-row input{width:auto;margin-top:3px;flex:0 0 auto}
+    .submit-btn{width:100%;margin-top:18px}
+    .privacy-note{font-size:.72rem;color:#908578;margin:10px 0 0;line-height:1.5}
+    .safety-section{background:#fff8ef}
+    .safety-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .safety-item{border-top:3px solid var(--teal);padding-top:18px}
+    .safety-item:nth-child(2),.safety-item:nth-child(5){border-top-color:var(--gold)}
+    .safety-item:nth-child(3),.safety-item:nth-child(6){border-top-color:var(--terracotta)}
+    .safety-item p{font-size:.9rem;margin-bottom:0}
+    .policy-box{margin-top:42px;padding:28px;border:1px solid var(--line);background:#fffdf8;border-radius:18px}
+    .policy-box h3:not(:first-child){margin-top:24px}
+    .policy-box p{font-size:.88rem;margin-bottom:0}
+    @media(max-width:850px){.intake-grid,.safety-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.field-grid{grid-template-columns:1fr}.intake-card{padding:20px}}
+
+  
+    .launch-notice{
+      background:#fff1dc;
+      border-bottom:1px solid var(--line);
+      color:#7b5b3e;
+      text-align:center;
+      padding:11px 18px;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.82rem;
+      line-height:1.45;
+    }
+
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#top">Walk With Me</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#how">How It Works</a>
+        <a href="#safety">Safety & Trust</a>
+        <a href="#heart">Our Heart</a>
+        <a class="btn btn-primary" href="#contact">Get Involved</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Santa Barbara Volunteer Dog Walking</div>
+        <h1>Helping neighbors, one walk at a time.</h1>
+        <p>
+          Walk With Me connects volunteer dog walkers with dog owners who are disabled,
+          injured, recovering, or living with limited mobility.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#request-form">Request a Walk</a>
+          <a class="btn btn-secondary" href="#volunteer-form">Volunteer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-strip">
+    <div class="container">
+      <p>Simple help for people who love their dogs.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-intro">
+        <div class="eyebrow">About Walk With Me</div>
+        <h2>Built around dogs, neighbors, and practical kindness.</h2>
+        <p>
+          An injury, disability, surgery, or mobility challenge can make a normal dog walk difficult.
+          Right now, Walk With Me is founder-led: I personally review requests, meet owners and their dogs, and handle the walks while the volunteer community grows.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-number">For Owners</div>
+          <h3>Ask for a little help.</h3>
+          <p>Get support when walking your dog is difficult because of injury, recovery, disability, or limited mobility.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-number">For Volunteers</div>
+          <h3>Help us grow.</h3>
+          <p>Walk With Me is currently founder-led, but we're building a volunteer community. Sign up if you'd like to help with future walks.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-number">For Community</div>
+          <h3>Make a real difference.</h3>
+          <p>One simple walk can mean fresh air for a dog and peace of mind for someone who needs it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-intro">
+        <div class="eyebrow">How it works</div>
+        <h2>Three easy steps.</h2>
+        <p>No complicated process. Just enough information to make a safe, thoughtful connection.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Reach out</h3>
+          <p>Tell us about your dog, your neighborhood, and the kind of help you need.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>We'll get in touch</h3>
+          <p>After you submit a request, Walk With Me will review the information and contact you to schedule a first walk.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Meet, then walk</h3>
+          <p>Before the first walk, we'll spend a few minutes meeting you and your dog, reviewing the leash setup, routine, commands, and triggers. If everyone is comfortable, we'll head out from there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="verse" id="heart">
+    <div class="container verse-wrap">
+      <div class="eyebrow">Our Heart</div>
+      <blockquote>
+        “In everything I did, I showed you that by this kind of hard work we must help the weak,
+        remembering the words the Lord Jesus himself said: ‘It is more blessed to give than to receive.’”
+      </blockquote>
+      <div class="verse-ref">Acts 20:35</div>
+    </div>
+  </section>
+
+  
+  
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="eyebrow">Get involved</div>
+      <h2>Need a walk or want to give one?</h2>
+      <p>Choose the form that fits you. We only ask for information that helps us make a safe, thoughtful match.</p>
+
+      <div class="launch-notice">
+        Walk With Me is currently launching on a limited basis in Santa Barbara. All requests are personally reviewed before a walk is scheduled.
+      </div>
+
+      <div class="intake-grid">
+        <form id="request-form" class="intake-card" action="https://formspree.io/f/mdeoeeer" method="POST">
+          <input type="hidden" name="form_type" value="Request a Walk">
+          <div class="form-kicker">For Dog Owners</div>
+          <h3>Request a Walk</h3>
+          <p class="form-intro">Tell us about your dog and the kind of help that would make walks easier.</p>
+
+          <div class="field-grid">
+            <div><label for="owner-name">Your Name</label><input id="owner-name" type="text" name="name" required></div>
+            <div><label for="owner-email">Email</label><input id="owner-email" type="email" name="email" required></div>
+          </div>
+
+          <div class="field-grid">
+            <div><label for="owner-phone">Phone</label><input id="owner-phone" type="tel" name="phone" required></div>
+            <div><label for="owner-address">Address</label><input id="owner-address" type="text" name="address" required></div>
+          </div>
+
+          <div class="field-grid">
+            <div><label for="dog-name">Dog's Name</label><input id="dog-name" type="text" name="dog_name" required></div>
+            <div><label for="dog-breed">Breed / Mix</label><input id="dog-breed" type="text" name="dog_breed"></div>
+          </div>
+
+          <div class="field-grid">
+            <div><label for="dog-age">Dog's Age</label><input id="dog-age" type="text" name="dog_age" placeholder="Example: 4 years"></div>
+            <div><label for="dog-weight">Approx. Weight</label><input id="dog-weight" type="text" name="dog_weight" placeholder="Example: 45 lbs"></div>
+          </div>
+
+          <label for="walk-schedule">Preferred Days / Times</label>
+          <input id="walk-schedule" type="text" name="preferred_schedule" required placeholder="Example: weekday mornings">
+
+          <label for="walk-length">Typical Walk Length</label>
+          <select id="walk-length" name="walk_length" required>
+            <option value="">Choose one</option>
+            <option>15–20 minutes</option><option>30 minutes</option><option>45 minutes</option>
+            <option>60 minutes</option><option>Flexible</option>
+          </select>
+
+          <label for="leash-behavior">Leash Behavior</label>
+          <textarea id="leash-behavior" name="leash_behavior" required placeholder="Pulling, lunging, calm walker, etc."></textarea>
+
+          <label for="reactivity">Reactivity / Triggers</label>
+          <textarea id="reactivity" name="reactivity" placeholder="Other dogs, bicycles, children, loud noises, cats, strangers, etc."></textarea>
+
+          <label for="bite-history">Bite or Aggression History</label>
+          <select id="bite-history" name="bite_history" required>
+            <option value="">Choose one</option>
+            <option>No known bite or aggression history</option>
+            <option>Yes — I will explain below</option>
+            <option>Unsure</option>
+          </select>
+
+          <label for="safety-notes">Safety Notes / Escape Tendencies</label>
+          <textarea id="safety-notes" name="safety_notes" placeholder="Door bolting, slipping harnesses, guarding behavior, or special handling instructions."></textarea>
+
+          <label for="vet">Veterinarian / Clinic</label>
+          <input id="vet" type="text" name="veterinarian" placeholder="Clinic name and phone if available">
+
+          <div class="field-grid">
+            <div><label for="owner-emergency-name">Emergency Contact</label><input id="owner-emergency-name" type="text" name="emergency_contact_name" required></div>
+            <div><label for="owner-emergency-phone">Emergency Contact Phone</label><input id="owner-emergency-phone" type="tel" name="emergency_contact_phone" required></div>
+          </div>
+
+          <label for="walking-difficulty">What is making regular walks difficult right now? <span class="optional">(optional)</span></label>
+          <textarea id="walking-difficulty" name="walking_difficulty" placeholder="Share only what you are comfortable sharing. Please do not include medical records or detailed diagnoses."></textarea>
+
+          <label for="owner-notes">Anything Else We Should Know?</label>
+          <textarea id="owner-notes" name="message" placeholder="Routine, commands, harness instructions, favorite route, or anything else that would help."></textarea>
+
+          <div class="acknowledgement">
+            <label class="check-row"><input type="checkbox" name="dog_information_accurate" value="Yes" required><span>I confirm that the dog behavior and safety information I provided is accurate to the best of my knowledge.</span></label>
+            <label class="check-row"><input type="checkbox" name="owner_safety_acknowledgement" value="Yes" required><span>I understand dog walking and outdoor activity involve inherent risks, and I agree to follow Walk With Me safety procedures.</span></label>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">Send Walk Request</button>
+          <p class="privacy-note">We use this information only to coordinate Walk With Me services. Please do not submit medical records, Social Security numbers, or financial information.</p>
+        </form>
+
+        <form id="volunteer-form" class="intake-card" action="https://formspree.io/f/mdeoeeer" method="POST">
+          <input type="hidden" name="form_type" value="Volunteer">
+          <div class="form-kicker">For Volunteers</div>
+          <h3>Volunteer to Walk</h3>
+          <p class="form-intro">Walk With Me is currently founder-led. Tell us where you could help as the volunteer community begins to grow.</p>
+
+          <div class="field-grid">
+            <div><label for="vol-name">Full Name</label><input id="vol-name" type="text" name="name" required></div>
+            <div><label for="vol-email">Email</label><input id="vol-email" type="email" name="email" required></div>
+          </div>
+
+          <div class="field-grid">
+            <div><label for="vol-phone">Phone</label><input id="vol-phone" type="tel" name="phone" required></div>
+            <div><label for="vol-location">Neighborhood / ZIP</label><input id="vol-location" type="text" name="location" required></div>
+          </div>
+
+          <label for="vol-age">Age Confirmation</label>
+          <select id="vol-age" name="age_confirmation" required>
+            <option value="">Choose one</option><option>I am 18 or older</option><option>I am under 18</option>
+          </select>
+
+          <div class="field-grid">
+            <div><label for="vol-emergency-name">Emergency Contact</label><input id="vol-emergency-name" type="text" name="emergency_contact_name" required></div>
+            <div><label for="vol-emergency-phone">Emergency Contact Phone</label><input id="vol-emergency-phone" type="tel" name="emergency_contact_phone" required></div>
+          </div>
+
+          <label for="dog-experience">Dog Experience</label>
+          <select id="dog-experience" name="dog_experience" required>
+            <option value="">Choose one</option>
+            <option>I own or have owned dogs</option>
+            <option>I regularly walk or care for dogs</option>
+            <option>I am comfortable with dogs but newer to walking</option>
+            <option>I have professional dog-handling experience</option>
+          </select>
+
+          <label for="dog-size-comfort">Dog Sizes You're Comfortable With</label>
+          <select id="dog-size-comfort" name="dog_size_comfort" required>
+            <option value="">Choose one</option>
+            <option>Small dogs only</option><option>Small and medium dogs</option>
+            <option>Small, medium, and large dogs</option>
+            <option>All sizes, including extra-large dogs</option>
+          </select>
+
+          <label for="reactive-comfort">Comfort With Reactive Dogs</label>
+          <select id="reactive-comfort" name="reactive_dog_comfort" required>
+            <option value="">Choose one</option>
+            <option>I prefer calm / easy dogs only</option>
+            <option>I can handle mild pulling or excitement</option>
+            <option>I have experience with reactive dogs</option>
+          </select>
+
+          <label for="vol-availability">Availability</label>
+          <textarea id="vol-availability" name="availability" required placeholder="Days, times, frequency, and how often you would like to volunteer."></textarea>
+
+          <label for="transportation">Transportation</label>
+          <select id="transportation" name="transportation" required>
+            <option value="">Choose one</option>
+            <option>I have reliable transportation</option>
+            <option>I can walk / bike / use transit locally</option>
+            <option>My transportation depends on the location</option>
+          </select>
+
+          <label for="vol-notes">Anything Else?</label>
+          <textarea id="vol-notes" name="message" placeholder="Dog handling skills, limitations, schedule preferences, or anything else we should know."></textarea>
+
+          <div class="acknowledgement">
+            <label class="check-row"><input type="checkbox" name="volunteer_code_of_conduct" value="Yes" required><span>I agree to treat owners, dogs, homes, and personal information with respect and follow owner instructions and Walk With Me safety procedures.</span></label>
+            <label class="check-row"><input type="checkbox" name="volunteer_safety_acknowledgement" value="Yes" required><span>I understand handling dogs and walking outdoors involve inherent risks and that I should decline any walk I am not comfortable safely completing.</span></label>
+          </div>
+
+          <button type="submit" class="btn btn-secondary submit-btn">Join the Volunteer List</button>
+          <p class="privacy-note">Volunteer applications will be reviewed before any future walk is offered. Screening and onboarding may expand as the program grows.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="safety-section" id="safety">
+    <div class="container">
+      <div class="section-intro">
+        <div class="eyebrow">Safety & Trust</div>
+        <h2>Kindness works best with clear expectations.</h2>
+        <p>Walk With Me is designed to make volunteering simple while still protecting dog owners, volunteers, and dogs.</p>
+      </div>
+
+      <div class="safety-grid">
+        <div class="safety-item"><h3>First Walks</h3><p>Before the first walk, we'll spend a few minutes meeting you and your dog, reviewing the leash setup, routine, commands, triggers, and anything else we should know. If everyone is comfortable, we'll head out for the walk from there.</p></div>
+        <div class="safety-item"><h3>Honest Dog Information</h3><p>Owners should disclose known bite history, aggression, reactivity, escape tendencies, and anything else that could affect a safe walk.</p></div>
+        <div class="safety-item"><h3>Walk Check-Ins</h3><p>Volunteers should confirm when a walk begins and when the dog has been safely returned.</p></div>
+        <div class="safety-item"><h3>Emergency Contacts</h3><p>Each match should have a reliable owner contact and an alternate emergency contact available during the walk.</p></div>
+        <div class="safety-item"><h3>Know Your Limits</h3><p>Volunteers should only accept dogs and situations they feel physically and confidently able to handle.</p></div>
+        <div class="safety-item"><h3>What We Are — and Aren't</h3><p>Walk With Me provides volunteer dog walking. It is not veterinary care, medical assistance, transportation, pet sitting, or emergency response.</p></div>
+      </div>
+
+      <div class="policy-box">
+        <h3>Privacy</h3>
+        <p>We collect only information needed to coordinate walks, communicate with participants, and respond to safety concerns. We do not ask for medical records or proof of disability. Participants should avoid sending highly sensitive personal, financial, or medical information.</p>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <p>© 2026 Walk With Me · Santa Barbara</p>
+    <p>Neighbors helping neighbors, one walk at a time.</p>
+  </div>
+</footer>
+</body>
+</html>
