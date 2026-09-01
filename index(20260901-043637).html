@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Walk With Me connects volunteer dog walkers with dog owners who are disabled, injured, recovering, or living with limited mobility in Santa Barbara." />
+  <title>Walk With Me | Santa Barbara Volunteer Dog Walking</title>
+
+  <style>
+    :root{
+      --cream:#fff8ee;
+      --paper:#fffdf8;
+      --ink:#3f3932;
+      --muted:#73695f;
+      --terracotta:#c96f52;
+      --terracotta-dark:#a9553d;
+      --teal:#3f7f7a;
+      --teal-dark:#2f6662;
+      --gold:#e6b65c;
+      --sand:#f0dfc4;
+      --line:#e3cfb5;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      line-height:1.6;
+    }
+
+    a{color:inherit}
+    .container{width:min(1080px, calc(100% - 32px)); margin:0 auto}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(255,253,248,.95);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+
+    nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      text-decoration:none;
+      font-size:1.45rem;
+      letter-spacing:-.025em;
+      color:var(--terracotta-dark);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.9rem;
+      color:#655f56;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.88rem;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:.15s ease;
+    }
+
+    .btn-primary{
+      background:var(--terracotta);
+      color:white;
+      box-shadow:0 8px 20px rgba(201,111,82,.16);
+    }
+
+    .btn-primary:hover{background:var(--terracotta-dark)}
+
+    .btn-secondary{
+      background:transparent;
+      border-color:var(--teal);
+      color:var(--teal-dark);
+    }
+
+    .btn-secondary:hover{
+      background:#edf7f6;
+    }
+
+    .hero{
+      padding:100px 0 96px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(230,182,92,.24), transparent 24%),
+        radial-gradient(circle at 12% 88%, rgba(63,127,122,.10), transparent 28%),
+        linear-gradient(180deg,#fff9ef 0%,#fff6e9 100%);
+    }
+
+    .hero-inner{
+      max-width:780px;
+    }
+
+    .eyebrow{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--teal-dark);
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3{
+      font-weight:400;
+      margin-top:0;
+      color:var(--ink);
+      letter-spacing:-.035em;
+    }
+
+    h1{
+      font-size:clamp(3.6rem, 7vw, 6.5rem);
+      line-height:.95;
+      margin-bottom:24px;
+      color:#4a3a32;
+    }
+
+    h2{
+      font-size:clamp(2.35rem, 4vw, 3.45rem);
+      line-height:1.06;
+      margin-bottom:16px;
+    }
+
+    h3{
+      font-size:1.35rem;
+      margin-bottom:8px;
+    }
+
+    p{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      color:var(--muted);
+    }
+
+    .hero p{
+      max-width:660px;
+      font-size:1.05rem;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .mission-strip{
+      padding:50px 0;
+      text-align:center;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:#fff4e6;
+    }
+
+    .mission-strip p{
+      font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      color:var(--terracotta-dark);
+      font-size:clamp(1.5rem, 2.5vw, 2.1rem);
+      max-width:800px;
+      margin:0 auto;
+    }
+
+    section{padding:82px 0}
+
+    .section-intro{
+      max-width:720px;
+      margin-bottom:36px;
+    }
+
+    .section-intro p{
+      margin-bottom:0;
+      font-size:.98rem;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card{
+      border-top:3px solid var(--gold);
+      padding-top:20px;
+    }
+
+    .card:nth-child(2){border-top-color:var(--teal)}
+    .card:nth-child(3){border-top-color:var(--terracotta)}
+
+    .card-number{
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      color:var(--teal-dark);
+      font-size:.75rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+
+    .card p{
+      margin:0;
+      font-size:.91rem;
+    }
+
+    .how{
+      background:#f4efe7;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .step{
+      background:var(--white);
+      border:1px solid var(--line);
+      padding:24px;
+      border-radius:18px;
+    }
+
+    .step-num{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--gold);
+      color:#4d4137;
+      margin-bottom:18px;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-weight:700;
+    }
+
+    .step:nth-child(2) .step-num{
+      background:var(--teal);
+      color:white;
+    }
+
+    .step:nth-child(3) .step-num{
+      background:var(--terracotta);
+      color:white;
+    }
+
+    .step p{
+      margin-bottom:0;
+      font-size:.91rem;
+    }
+
+    .verse{
+      background:linear-gradient(180deg,#e5f1f0 0%,#f3e9dc 100%);
+      text-align:center;
+    }
+
+    .verse-wrap{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    blockquote{
+      margin:0;
+      font-size:clamp(1.9rem, 3.5vw, 3.1rem);
+      line-height:1.3;
+      color:#3f4845;
+    }
+
+    .verse-ref{
+      margin-top:18px;
+      font-family:"Trebuchet MS",Arial,sans-serif;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--terracotta-dark);
+      font-weight:700;
+    }
+
+    .cta{
+      text-align:center;
+      background:#fff8ef;
+    }
+
+    .cta h2{
+      max-width:720px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta p{
+      max-width:620px;
+      margin:0 auto 24px;
+    }
+
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      padding:34px 0;
+      background:#355f5c;
+      color:#f6eee3;
+    }
+
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    footer p{
+      margin:0;
+      color:#e8ddd0;
+      font-size:.77rem;
+    }
+
+    @media (max-width: 850px){
+      .cards,.steps{grid-template-columns:1fr}
+      .nav-links a:not(.btn){display:none}
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(100% - 24px,1080px)}
+      nav{min-height:64px}
+      .nav-links .btn{padding:10px 14px;font-size:.8rem}
+      .hero{padding:70px 0}
+      section{padding:60px 0}
+    }
+  
+    @media (max-width: 760px){
+      #contact > .container > div[style*="grid-template-columns"]{
+        grid-template-columns:1fr !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#top">Walk With Me</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#how">How It Works</a>
+        <a href="#heart">Our Heart</a>
+        <a class="btn btn-primary" href="#contact">Get Involved</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Santa Barbara Volunteer Dog Walking</div>
+        <h1>Helping neighbors, one walk at a time.</h1>
+        <p>
+          Walk With Me connects volunteer dog walkers with dog owners who are disabled,
+          injured, recovering, or living with limited mobility.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#request-form">Request a Walk</a>
+          <a class="btn btn-secondary" href="#volunteer-form">Volunteer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-strip">
+    <div class="container">
+      <p>Simple help for people who love their dogs.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-intro">
+        <div class="eyebrow">About Walk With Me</div>
+        <h2>Built around dogs, neighbors, and practical kindness.</h2>
+        <p>
+          An injury, disability, surgery, or mobility challenge can make a normal dog walk difficult.
+          We make it easier for someone who needs help to connect with someone nearby who is willing to give it.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-number">For Owners</div>
+          <h3>Ask for a little help.</h3>
+          <p>Get support when walking your dog is difficult because of injury, recovery, disability, or limited mobility.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-number">For Volunteers</div>
+          <h3>Give a little time.</h3>
+          <p>Choose walks that fit your schedule, your comfort level, and your experience with dogs.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-number">For Community</div>
+          <h3>Make a real difference.</h3>
+          <p>One simple walk can mean fresh air for a dog and peace of mind for someone who needs it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-intro">
+        <div class="eyebrow">How it works</div>
+        <h2>Three easy steps.</h2>
+        <p>No complicated process. Just enough information to make a safe, thoughtful connection.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Reach out</h3>
+          <p>Tell us about your dog, your neighborhood, and the kind of help you need.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Find a match</h3>
+          <p>We connect owners and volunteers based on location, schedule, and comfort with the dog.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Take the walk</h3>
+          <p>Meet safely, agree on the details, and give the dog some fresh air and exercise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="verse" id="heart">
+    <div class="container verse-wrap">
+      <div class="eyebrow">Our Heart</div>
+      <blockquote>
+        “In everything I did, I showed you that by this kind of hard work we must help the weak,
+        remembering the words the Lord Jesus himself said: ‘It is more blessed to give than to receive.’”
+      </blockquote>
+      <div class="verse-ref">Acts 20:35</div>
+    </div>
+  </section>
+
+  
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="eyebrow">Get involved</div>
+      <h2>Need a walk or want to give one?</h2>
+      <p>
+        Choose the form that fits you. Submissions are sent securely through Formspree.
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:34px;text-align:left;">
+
+        <form id="request-form" action="https://formspree.io/f/mdeoeeer" method="POST"
+          style="background:#fffdf8;border:1px solid #e3cfb5;border-radius:18px;padding:24px;">
+          <input type="hidden" name="form_type" value="Request a Walk">
+          <h3 style="margin-bottom:6px;">Request a Walk</h3>
+          <p style="margin-top:0;font-size:.9rem;">For dog owners who could use some help.</p>
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Your Name</label>
+          <input type="text" name="name" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Email</label>
+          <input type="email" name="email" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Phone</label>
+          <input type="tel" name="phone"
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Address</label>
+          <input type="text" name="address" required
+            placeholder="Street address"
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Dog's Name</label>
+          <input type="text" name="dog_name" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Dog Size</label>
+          <select name="dog_size" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+            <option value="">Choose one</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>Extra Large</option>
+          </select>
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">What kind of help do you need?</label>
+          <textarea name="message" required
+            placeholder="Preferred days, walk length, temperament, leash behavior, or anything else we should know."
+            style="width:100%;min-height:120px;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;resize:vertical;"></textarea>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:16px;">Send Request</button>
+        </form>
+
+        <form id="volunteer-form" action="https://formspree.io/f/mdeoeeer" method="POST"
+          style="background:#fffdf8;border:1px solid #e3cfb5;border-radius:18px;padding:24px;">
+          <input type="hidden" name="form_type" value="Volunteer">
+          <h3 style="margin-bottom:6px;">Volunteer</h3>
+          <p style="margin-top:0;font-size:.9rem;">Help a neighbor and give a dog a good walk.</p>
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Your Name</label>
+          <input type="text" name="name" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Email</label>
+          <input type="email" name="email" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Phone</label>
+          <input type="tel" name="phone"
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Santa Barbara Neighborhood / ZIP</label>
+          <input type="text" name="location" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Dog Experience</label>
+          <select name="dog_experience" required
+            style="width:100%;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;">
+            <option value="">Choose one</option>
+            <option>I own or have owned dogs</option>
+            <option>I regularly walk or care for dogs</option>
+            <option>I am comfortable with dogs</option>
+            <option>I have professional dog-handling experience</option>
+          </select>
+
+          <label style="display:block;font-family:'Trebuchet MS',Arial,sans-serif;font-size:.8rem;font-weight:700;margin:14px 0 6px;">Availability</label>
+          <textarea name="availability" required
+            placeholder="Weekdays, weekends, mornings, evenings, preferred walk length, etc."
+            style="width:100%;min-height:120px;padding:12px;border:1px solid #d8c7b3;border-radius:10px;background:white;resize:vertical;"></textarea>
+
+          <button type="submit" class="btn btn-secondary" style="width:100%;margin-top:16px;">Join the Volunteer List</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <p>© 2026 Walk With Me · Santa Barbara</p>
+    <p>Neighbors helping neighbors, one walk at a time.</p>
+  </div>
+</footer>
+</body>
+</html>
